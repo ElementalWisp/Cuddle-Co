@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args) =>
     {
         await client.distube.voices.join(message.member.voice.channel)
         client.distube.options.searchSongs = 1
-        await client.distube.play(message.member.voice.channel, args.join(" "))
+        await client.distube.play(message, args.join(" "))
     }
     else if(!message.member.voice.channel)
     {

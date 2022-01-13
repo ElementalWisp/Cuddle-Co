@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) =>
             if(mediaTypes.includes(attachment.contentType))
             {
                 await client.distube.voices.join(message.member.voice.channel)
-                await client.distube.play(message.member.voice.channel, attachment.proxyURL)
+                await client.distube.play(message, attachment.proxyURL)
                 return
             }
             else
@@ -39,7 +39,7 @@ module.exports.run = async (client, message, args) =>
         
         await client.distube.voices.join(message.member.voice.channel)
         client.distube.options.searchSongs = 6
-        await client.distube.play(message.member.voice.channel, args.join(" "))
+        await client.distube.play(message, args.join(" "))
     }
     else if(!message.member.voice.channel)
     {

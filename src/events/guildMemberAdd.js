@@ -14,28 +14,6 @@ module.exports = async (client, member) =>
                 break welcomeMessage
             }
 
-            const guild = await client.guilds.fetch(member.guild.id).catch(error =>
-                {
-                    if(error.code !== 50001)
-                    {
-                        console.error('Failed to fetch the guild:', error)
-                    }
-                })
-
-            if(!guild)
-            {
-                console.log(`Removing guild ID "${member.guild.id}" from the database`)
-                try
-                {
-                    await welcomeSchema.deleteOne({guildId: member.guild.id})
-                }
-                catch(e)
-                {
-                    console.log(e)
-                }
-                return
-            }
-
             const {channelId, text} = result
     
             const channel = await member.guild.channels.fetch(channelId).catch(error =>
