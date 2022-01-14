@@ -32,7 +32,7 @@ module.exports = async (distube, queue, song) =>
         const embed = new MessageEmbed()
             .setColor(color)
             .addField('Now Playing', `[${song.name}](${song.url})`)
-            .setFooter(`Requested by ${song.member.displayName}`)
+            .setFooter({text: `Requested by ${song.member.displayName}`})
         sent = await queue.textChannel.send({ embeds: [embed] }).catch(error =>
         {
             if(error.code !== 10008)
@@ -46,7 +46,7 @@ module.exports = async (distube, queue, song) =>
         const embed = new MessageEmbed()
             .setColor(color)
             .addField('Now Playing', `[${song.name}](${song.url}) - \`${song.formattedDuration}\``)
-            .setFooter(`Requested by ${song.member.displayName}`)
+            .setFooter({text: `Requested by ${song.member.displayName}`})
         sent = await queue.textChannel.send({ embeds: [embed] }).catch(error =>
         {
             if(error.code !== 10008)

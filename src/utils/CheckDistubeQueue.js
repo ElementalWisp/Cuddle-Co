@@ -80,8 +80,14 @@ module.exports.checkDistubeQueue = async (distube) =>
                             .setColor(color)
                             .setDescription('Recovering from restart, one second while I fetch your queue')
                         textchannel.send({ embeds: [embed] })
-                        const playlist = await distube.handler.createCustomPlaylist(distube.client, urls, {name: "Recovery Queue"})
-                        distube.playVoiceChannel(voicechannel, playlist, {name: "Recovery Queue", textChannel: textchannel})
+                        const playlist = await distube.createCustomPlaylist(urls, 
+                        {
+                            properties: {name: "Recovery Queue"}
+                        })
+                        distube.play(voicechannel, playlist,
+                        {
+                            textChannel: textchannel
+                        })
                     }
                 }
             }

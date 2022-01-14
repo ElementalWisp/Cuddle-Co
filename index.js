@@ -135,7 +135,12 @@ client.distube
 					if(reaction.emoji.name === one)
 					{
 						i = 0
-						client.distube.play(message, result[i].url)
+						client.distube.play(message.member.voice.channel, result[i].url, 
+							{
+								member: message.member,
+								textChannel: message.channel,
+								message
+							})
 						msg.delete().catch(error =>
 							{
 								if(error.code !== 10008)
@@ -154,7 +159,12 @@ client.distube
 					else if(reaction.emoji.name === two)
 					{
 						i = 1
-						client.distube.play(message, result[i].url)
+						client.distube.play(message.member.voice.channel, result[i].url, 
+							{
+								member: message.member,
+								textChannel: message.channel,
+								message
+							})
 						msg.delete().catch(error =>
 							{
 								if(error.code !== 10008)
@@ -173,7 +183,12 @@ client.distube
 					else if(reaction.emoji.name === three)
 					{
 						i = 2
-						client.distube.play(message, result[i].url)
+						client.distube.play(message.member.voice.channel, result[i].url, 
+							{
+								member: message.member,
+								textChannel: message.channel,
+								message
+							})
 						msg.delete().catch(error =>
 							{
 								if(error.code !== 10008)
@@ -192,7 +207,12 @@ client.distube
 					else if(reaction.emoji.name === four)
 					{
 						i = 3
-						client.distube.play(message, result[i].url)
+						client.distube.play(message.member.voice.channel, result[i].url, 
+							{
+								member: message.member,
+								textChannel: message.channel,
+								message
+							})
 						msg.delete().catch(error =>
 							{
 								if(error.code !== 10008)
@@ -211,7 +231,12 @@ client.distube
 					else if(reaction.emoji.name === five)
 					{
 						i = 4
-						client.distube.play(message, result[i].url)
+						client.distube.play(message.member.voice.channel, result[i].url, 
+							{
+								member: message.member,
+								textChannel: message.channel,
+								message
+							})
 						msg.delete().catch(error =>
 							{
 								if(error.code !== 10008)
@@ -230,7 +255,12 @@ client.distube
 					else if(reaction.emoji.name === six)
 					{
 						i = 5
-						client.distube.play(message, result[i].url)
+						client.distube.play(message.member.voice.channel, result[i].url, 
+							{
+								member: message.member,
+								textChannel: message.channel,
+								message
+							})
 						msg.delete().catch(error =>
 							{
 								if(error.code !== 10008)
