@@ -13,7 +13,10 @@ module.exports.run = async (client, message, args) =>
 
     const Embed = new MessageEmbed()
     .setColor(color)
-    .setAuthor('Help Menu', `${helpmenuicon}`)
+    .setAuthor({
+        name: 'Help Menu',
+        iconURL: `${helpmenuicon}`
+        })
     //.setDescription('Some description here')
     //.setThumbnail('https://cdn.discordapp.com/attachments/328391017403252737/890151510422482974/doge.png')
     .addFields(
@@ -22,7 +25,9 @@ module.exports.run = async (client, message, args) =>
         { name: 'Effect commands', value: '\`3d\`, \`bassboost`\, \`echo`\, \`karaoke`\, \`nightcore`\, \`vaporwave\`, \`reset\`'},
         { name: 'Other commands', value: `\`admin\``}, 
     )
-    .setFooter(`Prefix is ${prefix}`)
+    .setFooter({
+        text: `Prefix is ${prefix}`
+        })
     message.channel.send({ embeds: [Embed] })
 }
 

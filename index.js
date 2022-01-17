@@ -68,19 +68,15 @@ client.distube
 
 		const embed = new MessageEmbed()
 		.setColor(color)
-		.setAuthor('Search Menu', `${helpmenuicon}`)
+		.setAuthor({
+			name: 'Search Menu',
+			iconURL: `${helpmenuicon}`
+			})
 		.addFields(
 			{ name: 'Songs', value: `\n${result.map(song => `${emojis[i++]} ${song.name} - \`${song.formattedDuration}\``).join("\n\n")}\n\n*React to a number or wait 30 secconds to cancel*`},
 		)
 		message.channel.send({ embeds: [embed] }).then(msg => 
 		{
-			setTimeout(() => msg.delete().catch(error =>
-                {
-                    if(error.code !== 10008)
-                    {
-                        console.error('Failed to react to the message:', error)
-                    }
-                }), 30000)
 			msg.react('1️⃣').catch(error =>
                 {
                     if(error.code !== 10008)
@@ -123,8 +119,18 @@ client.distube
                         console.error('Failed to react to the message:', error)
                     }
                 })
-			client.on('messageReactionAdd', async (reaction, user) =>
+
+			var listener = async (reaction, user) =>
 			{
+				setTimeout(() => msg.delete().catch(error =>
+					{
+						if(error.code !== 10008)
+						{
+							console.error('Failed to react to the message:', error)
+						}
+						client.removeListener('messageReactionAdd', listener)
+					}), 30000)
+
 				if(reaction.message.partial) await reaction.message.fetch()
 				if(reaction.partial) await reaction.fetch()
 				if(user.bot) return
@@ -155,6 +161,7 @@ client.distube
 									console.error('Failed to delete the message:', error)
 								}
 							})
+						client.removeListener('messageReactionAdd', listener)
 					}
 					else if(reaction.emoji.name === two)
 					{
@@ -179,6 +186,7 @@ client.distube
 									console.error('Failed to delete the message:', error)
 								}
 							})
+						client.removeListener('messageReactionAdd', listener)
 					}
 					else if(reaction.emoji.name === three)
 					{
@@ -203,6 +211,7 @@ client.distube
 									console.error('Failed to delete the message:', error)
 								}
 							})
+						client.removeListener('messageReactionAdd', listener)
 					}
 					else if(reaction.emoji.name === four)
 					{
@@ -227,6 +236,7 @@ client.distube
 									console.error('Failed to delete the message:', error)
 								}
 							})
+						client.removeListener('messageReactionAdd', listener)
 					}
 					else if(reaction.emoji.name === five)
 					{
@@ -251,6 +261,7 @@ client.distube
 									console.error('Failed to delete the message:', error)
 								}
 							})
+						client.removeListener('messageReactionAdd', listener)
 					}
 					else if(reaction.emoji.name === six)
 					{
@@ -275,13 +286,11 @@ client.distube
 									console.error('Failed to delete the message:', error)
 								}
 							})
+						client.removeListener('messageReactionAdd', listener)
 					}
 				}
-				else
-				{
-					return
-				}
-			})
+			}
+			client.on('messageReactionAdd', listener)
 		})
 	})
 
